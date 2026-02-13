@@ -20,13 +20,18 @@ const DEFAULT_MAX_RETRIES = 3;
 export class MemoryRelay {
   private httpClient: AxiosInstance;
   private maxRetries: number;
-  
+
   public readonly memories: MemoriesResource;
   public readonly entities: EntitiesResource;
   public readonly agents: AgentsResource;
 
   constructor(config: MemoryRelayConfig) {
-    const { apiKey, baseURL = DEFAULT_BASE_URL, timeout = DEFAULT_TIMEOUT, maxRetries = DEFAULT_MAX_RETRIES } = config;
+    const {
+      apiKey,
+      baseURL = DEFAULT_BASE_URL,
+      timeout = DEFAULT_TIMEOUT,
+      maxRetries = DEFAULT_MAX_RETRIES,
+    } = config;
 
     if (!apiKey) {
       throw new ValidationError('API key is required');
@@ -38,7 +43,7 @@ export class MemoryRelay {
       baseURL,
       timeout,
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'User-Agent': 'memoryrelay-node-sdk/0.1.0',
       },
@@ -86,7 +91,7 @@ export class MemoryRelay {
           // Network errors
           if (!axiosError.response) {
             lastError = new NetworkError(`Network error: ${axiosError.message}`);
-            
+
             if (attempt < this.maxRetries - 1) {
               await this.sleep(2 ** attempt * 1000);
               continue;
@@ -106,12 +111,12 @@ export class MemoryRelay {
           if (status === 429) {
             const retryAfter = axiosError.response.headers['retry-after'];
             const waitTime = retryAfter ? parseInt(retryAfter, 10) * 1000 : 2 ** attempt * 1000;
-            
+
             if (attempt < this.maxRetries - 1) {
               await this.sleep(waitTime);
               continue;
             }
-            
+
             throw new RateLimitError(
               (data as any)?.error || 'Rate limit exceeded',
               retryAfter ? parseInt(retryAfter, 10) : undefined
@@ -120,12 +125,8 @@ export class MemoryRelay {
 
           // Server errors (5xx) - retry
           if (status >= 500) {
-            lastError = new APIError(
-              (data as any)?.error || 'Server error',
-              status,
-              data
-            );
-            
+            lastError = new APIError((data as any)?.error || 'Server error', status, data);
+
             if (attempt < this.maxRetries - 1) {
               await this.sleep(2 ** attempt * 1000);
               continue;
@@ -134,17 +135,13 @@ export class MemoryRelay {
           }
 
           // Other errors
-          throw new APIError(
-            (data as any)?.error || 'API error',
-            status,
-            data
-          );
+          throw new APIError((data as any)?.error || 'API error', status, data);
         }
 
         // Timeout errors
         if (error instanceof Error && error.message.includes('timeout')) {
           lastError = new TimeoutError('Request timeout');
-          
+
           if (attempt < this.maxRetries - 1) {
             await this.sleep(2 ** attempt * 1000);
             continue;

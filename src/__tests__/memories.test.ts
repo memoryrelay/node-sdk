@@ -116,9 +116,7 @@ describe('MemoriesResource', () => {
     });
 
     it('should throw ValidationError for empty query', async () => {
-      await expect(
-        client.memories.search({ query: '' })
-      ).rejects.toThrow(ValidationError);
+      await expect(client.memories.search({ query: '' })).rejects.toThrow(ValidationError);
     });
   });
 
