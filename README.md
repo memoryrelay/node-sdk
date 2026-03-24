@@ -356,7 +356,7 @@ npm run format
 ## Links
 
 - **Documentation**: https://docs.memoryrelay.ai
-- **API Reference**: https://api.memoryrelay.net/docs
+- **API Reference**: https://docs.memoryrelay.ai/
 - **GitHub**: https://github.com/memoryrelay/node-sdk
 - **npm**: https://www.npmjs.com/package/@memoryrelay/sdk
 - **Website**: https://memoryrelay.ai
