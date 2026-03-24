@@ -42,7 +42,8 @@ export class MemoriesResource {
     if (params.project !== undefined) body.project = params.project;
     if (params.deduplicate !== undefined) body.deduplicate = params.deduplicate;
     if (params.dedup_threshold !== undefined) body.dedup_threshold = params.dedup_threshold;
-    if (params.auto_extract_entities !== undefined) body.auto_extract_entities = params.auto_extract_entities;
+    if (params.auto_extract_entities !== undefined)
+      body.auto_extract_entities = params.auto_extract_entities;
 
     return this.client.request<Memory>('POST', '/v1/memories', body);
   }

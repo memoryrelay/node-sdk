@@ -125,7 +125,11 @@ export class MemoryRelay {
 
           // Server errors (5xx) - retry
           if (status >= 500) {
-            lastError = new APIError((data as any)?.detail || (data as any)?.error || 'Server error', status, data);
+            lastError = new APIError(
+              (data as any)?.detail || (data as any)?.error || 'Server error',
+              status,
+              data
+            );
 
             if (attempt < this.maxRetries - 1) {
               await this.sleep(2 ** attempt * 1000);
@@ -135,7 +139,11 @@ export class MemoryRelay {
           }
 
           // Other errors
-          throw new APIError((data as any)?.detail || (data as any)?.error || 'API error', status, data);
+          throw new APIError(
+            (data as any)?.detail || (data as any)?.error || 'API error',
+            status,
+            data
+          );
         }
 
         // Timeout errors

@@ -59,7 +59,12 @@ export class EntitiesResource {
     entity_id: string;
     memory_id: string;
     relationship?: string;
-  }): Promise<{ entity_id: string; memory_id: string; relevance_score: number; created_at: string }> {
+  }): Promise<{
+    entity_id: string;
+    memory_id: string;
+    relevance_score: number;
+    created_at: string;
+  }> {
     return this.client.request('POST', '/v1/entities/links', params);
   }
 }
