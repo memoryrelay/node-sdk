@@ -24,19 +24,27 @@ export class MemoriesResource {
     if (!content || content.trim().length === 0) {
       throw new ValidationError('content cannot be empty');
     }
-    if (content.length > 10000) {
-      throw new ValidationError('content cannot exceed 10000 characters');
+    if (content.length > 50000) {
+      throw new ValidationError('content cannot exceed 50000 characters');
     }
     if (!agent_id || agent_id.trim().length === 0) {
       throw new ValidationError('agent_id cannot be empty');
     }
 
-    return this.client.request<Memory>('POST', '/v1/memories', {
-      content,
-      agent_id,
-      metadata,
-      user_id,
-    });
+    const body: Record<string, unknown> = { content, agent_id };
+    if (metadata !== undefined) body.metadata = metadata;
+    if (user_id !== undefined) body.user_id = user_id;
+    if (params.visibility !== undefined) body.visibility = params.visibility;
+    if (params.memory_type !== undefined) body.memory_type = params.memory_type;
+    if (params.importance !== undefined) body.importance = params.importance;
+    if (params.tier !== undefined) body.tier = params.tier;
+    if (params.session_id !== undefined) body.session_id = params.session_id;
+    if (params.project !== undefined) body.project = params.project;
+    if (params.deduplicate !== undefined) body.deduplicate = params.deduplicate;
+    if (params.dedup_threshold !== undefined) body.dedup_threshold = params.dedup_threshold;
+    if (params.auto_extract_entities !== undefined) body.auto_extract_entities = params.auto_extract_entities;
+
+    return this.client.request<Memory>('POST', '/v1/memories', body);
   }
 
   /**
@@ -57,8 +65,8 @@ export class MemoriesResource {
       if (!content || content.trim().length === 0) {
         throw new ValidationError('content cannot be empty');
       }
-      if (content.length > 10000) {
-        throw new ValidationError('content cannot exceed 10000 characters');
+      if (content.length > 50000) {
+        throw new ValidationError('content cannot exceed 50000 characters');
       }
     }
 
@@ -79,7 +87,7 @@ export class MemoriesResource {
    * Search memories by semantic similarity
    */
   async search(params: SearchMemoriesParams): Promise<MemorySearchResult[]> {
-    const { query, agent_id, limit = 10, threshold } = params;
+    const { query, agent_id, limit = 10, min_score } = params;
 
     if (!query || query.trim().length === 0) {
       throw new ValidationError('query cannot be empty');
@@ -88,7 +96,7 @@ export class MemoriesResource {
     const response = await this.client.request<{ data: MemorySearchResult[] }>(
       'POST',
       '/v1/memories/search',
-      { query, agent_id, limit, threshold }
+      { query, agent_id, limit, min_score }
     );
 
     return response.data;
@@ -121,9 +129,9 @@ export class MemoriesResource {
       if (!memory.content || memory.content.trim().length === 0) {
         throw new ValidationError(`Memory at index ${index}: content cannot be empty`);
       }
-      if (memory.content.length > 10000) {
+      if (memory.content.length > 50000) {
         throw new ValidationError(
-          `Memory at index ${index}: content cannot exceed 10000 characters`
+          `Memory at index ${index}: content cannot exceed 50000 characters`
         );
       }
       if (!memory.agent_id || memory.agent_id.trim().length === 0) {

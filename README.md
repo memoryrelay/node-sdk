@@ -107,7 +107,7 @@ const results = await client.memories.search({
   query: 'search query',
   agent_id: 'agent-id',  // optional
   limit: 10,              // optional
-  threshold: 0.7,         // optional
+  min_score: 0.7,         // optional
 });
 ```
 
@@ -140,7 +140,7 @@ console.log(`Total time: ${response.timing.total_ms}ms`);
 // Create entity
 const entity = await client.entities.create({
   name: 'John Doe',
-  type: 'person',
+  entity_type: 'person',
   metadata: { role: 'user' },
 });
 
@@ -149,6 +149,21 @@ const entity = await client.entities.get('entity-id');
 
 // List entities
 const entities = await client.entities.list({ limit: 10 });
+
+// Update entity
+const updated = await client.entities.update('entity-id', {
+  metadata: { role: 'admin' },
+});
+
+// Delete entity
+await client.entities.delete('entity-id');
+
+// Link entity to memory
+const link = await client.entities.link({
+  entity_id: 'entity-id',
+  memory_id: 'memory-id',
+  relationship: 'mentioned_in',
+});
 ```
 
 ### Agents
@@ -166,6 +181,15 @@ const agent = await client.agents.get('agent-id');
 
 // List agents
 const agents = await client.agents.list();
+
+// Update agent
+const updated = await client.agents.update('agent-id', {
+  name: 'Updated Agent',
+  metadata: { version: '2.0' },
+});
+
+// Delete agent
+await client.agents.delete('agent-id');
 
 // Get agent stats
 const stats = await client.agents.stats('agent-id');
@@ -256,8 +280,8 @@ const context = await client.memories.search({
   limit: 3,
 });
 
-context.forEach((memory) => {
-  console.log(`${memory.content} (score: ${memory.score})`);
+context.forEach((result) => {
+  console.log(`${result.memory.content} (score: ${result.score})`);
 });
 ```
 
