@@ -55,11 +55,7 @@ export class EntitiesResource {
   /**
    * Link an entity to a memory
    */
-  async link(params: {
-    entity_id: string;
-    memory_id: string;
-    relationship?: string;
-  }): Promise<{
+  async link(params: { entity_id: string; memory_id: string; relationship?: string }): Promise<{
     entity_id: string;
     memory_id: string;
     relevance_score: number;
