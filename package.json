@@ -1,6 +1,6 @@
 {
   "name": "@memoryrelay/sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official Node.js SDK for MemoryRelay - semantic memory storage for AI agents",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
