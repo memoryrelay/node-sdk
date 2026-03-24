@@ -23,8 +23,8 @@ describe('MemoriesResource', () => {
         id: 'mem_123',
         content: 'Test memory',
         agent_id: 'agent_1',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+        created_at: 1707649200,
+        updated_at: 1707649200,
       };
 
       nock(BASE_URL).post('/v1/memories').reply(200, mockMemory);
@@ -59,7 +59,7 @@ describe('MemoriesResource', () => {
     it('should throw ValidationError for content too long', async () => {
       await expect(
         client.memories.create({
-          content: 'a'.repeat(10001),
+          content: 'a'.repeat(50001),
           agent_id: 'agent_1',
         })
       ).rejects.toThrow(ValidationError);
@@ -72,8 +72,8 @@ describe('MemoriesResource', () => {
         id: 'mem_123',
         content: 'Test memory',
         agent_id: 'agent_1',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+        created_at: 1707649200,
+        updated_at: 1707649200,
       };
 
       nock(BASE_URL).get('/v1/memories/mem_123').reply(200, mockMemory);
@@ -83,7 +83,7 @@ describe('MemoriesResource', () => {
     });
 
     it('should throw NotFoundError for non-existent memory', async () => {
-      nock(BASE_URL).get('/v1/memories/invalid').reply(404, { error: 'Memory not found' });
+      nock(BASE_URL).get('/v1/memories/invalid').reply(404, { detail: 'Memory not found' });
 
       await expect(client.memories.get('invalid')).rejects.toThrow(NotFoundError);
     });
@@ -94,12 +94,14 @@ describe('MemoriesResource', () => {
       const mockResults = {
         data: [
           {
-            id: 'mem_123',
-            content: 'Test memory',
-            agent_id: 'agent_1',
+            memory: {
+              id: 'mem_123',
+              content: 'Test memory',
+              agent_id: 'agent_1',
+              created_at: 1707649200,
+              updated_at: 1707649200,
+            },
             score: 0.95,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
           },
         ],
       };
@@ -113,6 +115,7 @@ describe('MemoriesResource', () => {
 
       expect(results).toHaveLength(1);
       expect(results[0].score).toBe(0.95);
+      expect(results[0].memory.id).toBe('mem_123');
     });
 
     it('should throw ValidationError for empty query', async () => {
@@ -124,8 +127,8 @@ describe('MemoriesResource', () => {
     it('should create multiple memories', async () => {
       const mockResponse = {
         results: [
-          { success: true, memory_id: 'mem_1', index: 0 },
-          { success: true, memory_id: 'mem_2', index: 1 },
+          { status: 'success', memory_id: 'mem_1', index: 0 },
+          { status: 'success', memory_id: 'mem_2', index: 1 },
         ],
         succeeded: 2,
         failed: 0,
@@ -163,8 +166,8 @@ describe('MemoriesResource', () => {
         id: 'mem_123',
         content: 'Updated content',
         agent_id: 'agent_1',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+        created_at: 1707649200,
+        updated_at: 1707649200,
       };
 
       nock(BASE_URL).put('/v1/memories/mem_123').reply(200, mockMemory);
@@ -193,8 +196,8 @@ describe('MemoriesResource', () => {
             id: 'mem_1',
             content: 'Memory 1',
             agent_id: 'agent_1',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
+            created_at: 1707649200,
+            updated_at: 1707649200,
           },
         ],
       };

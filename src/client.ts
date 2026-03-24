@@ -118,14 +118,18 @@ export class MemoryRelay {
             }
 
             throw new RateLimitError(
-              (data as any)?.error || 'Rate limit exceeded',
+              (data as any)?.detail || (data as any)?.error || 'Rate limit exceeded',
               retryAfter ? parseInt(retryAfter, 10) : undefined
             );
           }
 
           // Server errors (5xx) - retry
           if (status >= 500) {
-            lastError = new APIError((data as any)?.error || 'Server error', status, data);
+            lastError = new APIError(
+              (data as any)?.detail || (data as any)?.error || 'Server error',
+              status,
+              data
+            );
 
             if (attempt < this.maxRetries - 1) {
               await this.sleep(2 ** attempt * 1000);
@@ -135,7 +139,11 @@ export class MemoryRelay {
           }
 
           // Other errors
-          throw new APIError((data as any)?.error || 'API error', status, data);
+          throw new APIError(
+            (data as any)?.detail || (data as any)?.error || 'API error',
+            status,
+            data
+          );
         }
 
         // Timeout errors
@@ -163,12 +171,14 @@ export class MemoryRelay {
    */
   private handleErrorResponse(error: AxiosError): never {
     const { status, data } = error.response!;
-    const message = (data as any)?.error || error.message;
+    const message = (data as any)?.detail || (data as any)?.error || error.message;
 
     switch (status) {
       case 400:
         throw new ValidationError(message);
       case 401:
+        throw new AuthenticationError(message);
+      case 403:
         throw new AuthenticationError(message);
       case 404:
         throw new NotFoundError(message);

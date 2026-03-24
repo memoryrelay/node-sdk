@@ -37,6 +37,23 @@ export class AgentsResource {
   }
 
   /**
+   * Update an agent
+   */
+  async update(
+    agentId: string,
+    params: { name?: string; description?: string; metadata?: Record<string, unknown> }
+  ): Promise<Agent> {
+    return this.client.request<Agent>('PUT', `/v1/agents/${agentId}`, params);
+  }
+
+  /**
+   * Delete an agent
+   */
+  async delete(agentId: string): Promise<void> {
+    await this.client.request<void>('DELETE', `/v1/agents/${agentId}`);
+  }
+
+  /**
    * Get agent statistics
    */
   async stats(agentId: string): Promise<{ memory_count: number; entity_count: number }> {
