@@ -104,6 +104,7 @@ export interface MemoryRelayConfig {
   apiKey: string;
   baseURL?: string;
   timeout?: number;
+  /** Attempts in all, the first one included (default 3); retried: network errors, 5xx, 429. */
   maxRetries?: number;
 }
 

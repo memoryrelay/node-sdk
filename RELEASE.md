@@ -72,7 +72,7 @@ git push origin v0.1.0
 ```
 
 GitHub Actions will automatically:
-1. Run tests on Node 16, 18, 20
+1. Run tests on Node 18, 20, 22
 2. Build the package
 3. Publish to npm
 4. Create GitHub release

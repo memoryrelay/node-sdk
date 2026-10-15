@@ -1,6 +1,6 @@
 ---
-verified_at: 2026-10-14
-verified_commit: c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c
+verified_at: 2026-10-15
+verified_commit: b3fe99d8acfb2bb18d3790970ce67ed2c049e613
 ---
 
 # Documents — what this repository's documents say, and who owns it
@@ -18,12 +18,4 @@ The agent-facing files are the root `AGENTS.md` (the entry; `CLAUDE.md` is a one
 
 ## Known drift
 
-Each is a correction for the next run that touches the document, not a fact to repeat.
-
-| Where | Says | The owner says |
-|---|---|---|
-| `README.md:353` | Node.js 16 or later | Node 18 or later (`package.json:41-43`); CI tests 18, 20 and 22 (`ci-cd.yml:18`) |
-| `README.md:16` | 100% test coverage | the gate is 50-65% (`jest.config.js:12-19`), lowered to the measured coverage in `dcceef6` |
-| `README.md:314` | `maxRetries: 5` retries up to 5 times | five attempts in all ([gotchas.md](gotchas.md)) |
-| `RELEASE.md:75` | tests run on Node 16, 18, 20 | `ci-cd.yml:18`: 18, 20, 22 |
-| `README.md:8-16` "Features" | the SDK's surface, with no word on its scope | memory only, no `icm` resource ([api-alignment.md](api-alignment.md), Recommendation 4) |
+None known. The five items found at onboarding (the Node.js floor, the coverage claim, `maxRetries` as retries, RELEASE.md's Node matrix, the SDK's scope) were corrected on 2026-10-15.

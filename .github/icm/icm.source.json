@@ -260,13 +260,13 @@
     },
     {
       "id": "shared-api-alignment.md",
-      "revision": 1,
+      "revision": 2,
       "kind": "fact",
       "layer": "L3",
       "state": "accepted",
       "project_id": "node-sdk",
-      "verified_at": "2026-10-14",
-      "review_after": "2027-01-12",
+      "verified_at": "2026-10-15",
+      "review_after": "2027-01-13",
       "files": [
         ".github/icm/_shared/api-alignment.md"
       ],
@@ -274,27 +274,27 @@
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".github/workflows/ci-cd.yml",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "README.md",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "package.json",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/client.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/types.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         }
       ]
     },
@@ -415,13 +415,13 @@
     },
     {
       "id": "shared-documents.md",
-      "revision": 1,
+      "revision": 2,
       "kind": "fact",
       "layer": "L3",
       "state": "accepted",
       "project_id": "node-sdk",
-      "verified_at": "2026-10-14",
-      "review_after": "2027-01-12",
+      "verified_at": "2026-10-15",
+      "review_after": "2027-01-13",
       "files": [
         ".github/icm/_shared/documents.md"
       ],
@@ -429,44 +429,39 @@
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".github/workflows/ci-cd.yml",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "LICENSE",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "README.md",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "RELEASE.md",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
-        },
-        {
-          "repo": "memoryrelay/node-sdk",
-          "path": "jest.config.js",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "package.json",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         }
       ]
     },
     {
       "id": "shared-gotchas.md",
-      "revision": 1,
+      "revision": 2,
       "kind": "fact",
       "layer": "L3",
       "state": "accepted",
       "project_id": "node-sdk",
-      "verified_at": "2026-10-14",
-      "review_after": "2027-01-12",
+      "verified_at": "2026-10-15",
+      "review_after": "2027-01-13",
       "files": [
         ".github/icm/_shared/gotchas.md"
       ],
@@ -474,37 +469,37 @@
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".github/workflows/ci-cd.yml",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".prettierrc",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "README.md",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "package.json",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/__tests__/client.test.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/client.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/errors.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "b3fe99d8acfb2bb18d3790970ce67ed2c049e613"
         }
       ]
     },

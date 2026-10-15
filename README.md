@@ -13,7 +13,9 @@
 - 🔍 **Semantic search** powered by vector embeddings
 - ⚡ **Promise-based API** (async/await)
 - 🛡️ **Comprehensive error handling**
-- 📝 **100% test coverage**
+- 📝 **Tested** with Jest on Node.js 18, 20 and 22, with a coverage floor enforced in CI
+
+This SDK covers the memory API only: memories, entities, agents and the health check. It has no ICM resource (workspaces, context builds, receipts); for ICM, use the remote MCP server at `https://api.memoryrelay.net/mcp` or the Python SDK ([`memoryrelay`](https://pypi.org/project/memoryrelay/), `client.icm`).
 
 ## Installation
 
@@ -60,7 +62,7 @@ const client = new MemoryRelay({
   apiKey: 'mem_your_api_key_here',
   baseURL: 'https://api.memoryrelay.net', // optional
   timeout: 30000,                          // optional (ms)
-  maxRetries: 3,                           // optional
+  maxRetries: 3,                           // optional: attempts in all, including the first
 });
 ```
 
@@ -306,12 +308,12 @@ console.log(`
 
 ### Error Handling with Retries
 
-The SDK automatically retries failed requests with exponential backoff:
+The SDK automatically retries network errors, timeouts, 5xx responses and 429 (honouring `Retry-After`) with exponential backoff; other 4xx errors are thrown at once. `maxRetries` is the number of attempts in all, the first one included (default 3), so set it to at least 1:
 
 ```typescript
 const client = new MemoryRelay({
   apiKey: process.env.MEMORYRELAY_API_KEY!,
-  maxRetries: 5,  // Retry up to 5 times
+  maxRetries: 5,  // Up to 5 attempts: the first try and 4 retries
   timeout: 60000, // 60 second timeout
 });
 
@@ -350,7 +352,7 @@ npm run format
 
 ## Requirements
 
-- Node.js >= 16.0.0
+- Node.js >= 18.0.0
 - TypeScript >= 5.0.0 (for TypeScript users)
 
 ## Links

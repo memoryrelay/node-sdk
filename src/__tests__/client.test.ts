@@ -91,5 +91,18 @@ describe('MemoryRelay Client', () => {
       const health = await client.health();
       expect(health.status).toBe('healthy');
     });
+
+    it('counts maxRetries as attempts in all, the first one included', async () => {
+      const twoAttempts = new MemoryRelay({ apiKey: API_KEY, baseURL: BASE_URL, maxRetries: 2 });
+      const scope = nock(BASE_URL)
+        .get('/v1/health')
+        .times(2)
+        .reply(500, { error: 'Server error' })
+        .get('/v1/health')
+        .reply(200, { status: 'healthy', version: '1.0.0', services: {} });
+
+      await expect(twoAttempts.health()).rejects.toThrow('Server error');
+      expect(scope.pendingMocks()).toHaveLength(1);
+    });
   });
 });
