@@ -355,13 +355,13 @@
     },
     {
       "id": "shared-build-and-test.md",
-      "revision": 1,
+      "revision": 2,
       "kind": "fact",
       "layer": "L3",
       "state": "accepted",
       "project_id": "node-sdk",
-      "verified_at": "2026-10-14",
-      "review_after": "2027-01-12",
+      "verified_at": "2026-10-18",
+      "review_after": "2027-01-16",
       "files": [
         ".github/icm/_shared/build-and-test.md"
       ],
@@ -369,47 +369,47 @@
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".github/workflows/ci-cd.yml",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": ".prettierrc",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "eslint.config.mjs",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "jest.config.js",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "package.json",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/__tests__/client.test.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/resources/agents.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "src/resources/entities.ts",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         },
         {
           "repo": "memoryrelay/node-sdk",
           "path": "tsconfig.json",
-          "commit": "c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c"
+          "commit": "8125301785da9fc130090bdd9db0c5ea4d63fb5c"
         }
       ]
     },
