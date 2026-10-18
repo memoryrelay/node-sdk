@@ -1,6 +1,6 @@
 ---
-verified_at: 2026-10-14
-verified_commit: c5ad2a0de2940a87d53f34f9ca453c0c2a78fe7c
+verified_at: 2026-10-18
+verified_commit: 8125301785da9fc130090bdd9db0c5ea4d63fb5c
 ---
 
 # Build, test, and what counts as evidence
@@ -19,6 +19,16 @@ What CI runs is the `test` job of `.github/workflows/ci-cd.yml` (`ci-cd.yml:14-4
 | engines | `package.json:41-43` | Node 18 or later |
 
 ## Evidence
+
+Dependency security fixes should run `npm audit` against the complete lockfile,
+including development dependencies, as well as the CI chain above. Jest 30 and
+ts-jest 29.4 are compatible; keep their peer versions aligned. The scoped
+`@istanbuljs/load-nyc-config` override uses `js-yaml` 4.3.2 or later in the 4.x
+line to remove its old `argparse`/`sprintf-js` dependency chain. The loader uses
+`js-yaml.load`, which remains supported. Verify YAML coverage configuration
+loading when changing this override, alongside coverage tests. A clean local
+audit does not prove GitHub alerts have closed before the PR is merged and
+GitHub rescans the default branch.
 
 - A defect in the SDK's own logic: a nock test in `src/__tests__/` that fails before the change and passes after, calling the SDK, never a copy of its logic.
 - A disagreement with the API: a nock mock only encodes what the SDK assumes, so it is not proof of the API's shape. The proof is the API's own route or schema in memoryrelay/api, or a recorded live response with the key removed; see [api-alignment.md](api-alignment.md).
